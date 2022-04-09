@@ -8,12 +8,51 @@
         <div class="d-flex justify-content-center mt-5">
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                  <h5 class="card-title">Login success</h5>
+                  <h5 class="card-title text-center">Dashboard</h5>
                   <div class="d-flex justify-content-center">
-                    <a href="{% url 'login' %}" class="btn btn-primary">Logout</a>
+                    <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
                   </div>
                 </div>
               </div>
         </div>
-    </body>
+
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              {% if messages %}
+                  {% for msg in messages %}
+                      <div class="alert alert-success" role="alert">
+                          {{ msg }}
+                      </div>
+                  {% endfor %}
+              {% endif %}
+              <div class="d-flex justify-content-between align-items-center">
+                <h3>Employee List</h3>
+                <a href="{% url 'empcreate' %}" class="btn btn-primary">Create New</a>
+              </div>
+              
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Address</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for emp in Employees %}
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>{{ emp.Name }}</td>
+                      <td>{{ emp.Phone }}</td>
+                      <td>{{ emp.Address }}</td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </body>
 </html>
